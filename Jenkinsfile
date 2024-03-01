@@ -28,7 +28,7 @@ pipeline {
             steps{
                 script{
             withSonarQubeEnv() {
-              bat '%scannerHome%\\bin\\windows-x86-64\\SonarService.bat'
+              bat 'SonarService.bat'
             }
             }
             }
