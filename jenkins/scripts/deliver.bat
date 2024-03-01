@@ -19,7 +19,13 @@ echo the file ".pidfile".
 echo.
 start npm start
 ping 127.0.0.1 -n 2 > nul
-echo %errorlevel% > .pidfile
+REM Get the PID of the npm start process
+for /f "tokens=2 delims=,= " %%a in ('tasklist /FI "WINDOWTITLE eq npm start" /NH') do (
+    echo %%a > .pidfile
+    goto :next
+)
+:next
+
 
 echo Now...
 echo Visit http://localhost:3000 to see your Node.js/React application in action.
