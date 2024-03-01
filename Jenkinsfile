@@ -9,7 +9,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps{
                 script{
-            def scannerHome = tool 'sonarscanner';
+            def scannerHome = tool 'Sonarqube_exec';
             withSonarQubeEnv() {
               bat '%scannerHome%\\bin\\windows-x86-64\\SonarService.bat'
             }
