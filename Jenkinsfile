@@ -8,6 +8,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
+                script{
                 def jenkinsInstance = Jenkins.getInstance()
                 def toolDescriptor = Jenkins.getInstance().getDescriptorList(ToolDescriptor.class)
                 
@@ -17,6 +18,7 @@ pipeline {
                         println("- Name: ${installation.name}")
                         println("  Home: ${installation.home}")
                     }
+                }
                 }
                 bat 'npm install' 
             }
