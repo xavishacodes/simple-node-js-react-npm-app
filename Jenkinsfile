@@ -17,7 +17,7 @@ pipeline {
                 script{
              // Use the correct installation name for SonarScanner
                 def scannerHome = tool 'Sonarqube_exec';
-                withSonarQubeEnv('SonarQube') {
+                withSonarQubeEnv() {
                     bat "%scannerHome%\\bin\\sonar-scanner.bat"
                 }
             }
