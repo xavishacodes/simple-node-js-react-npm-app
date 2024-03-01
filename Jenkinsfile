@@ -18,7 +18,7 @@ pipeline {
              // Use the correct installation name for SonarScanner
                 def scannerHome = tool 'Sonarqube_exec';
                 withSonarQubeEnv() {
-                    bat "%scannerHome%\\bin\\sonar-scanner.bat"
+                    bat "${scannerHome}/bin/windows-x86-64/SonarService.bat"
                 }
             }
         }
