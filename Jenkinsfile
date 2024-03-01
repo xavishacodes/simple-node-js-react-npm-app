@@ -1,7 +1,3 @@
-import jenkins.model.*
-import hudson.tools.*
-
-
 
 pipeline {
     agent any
