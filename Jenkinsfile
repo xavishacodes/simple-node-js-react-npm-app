@@ -8,18 +8,6 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                script{
-                def jenkinsInstance = Jenkins.getInstance()
-                def toolDescriptor = Jenkins.getInstance().getDescriptorList(ToolDescriptor.class)
-                
-                toolDescriptor.each { descriptor ->
-                    println("Tool Type: ${descriptor.displayName}")
-                    descriptor.getInstallations().each { installation ->
-                        println("- Name: ${installation.name}")
-                        println("  Home: ${installation.home}")
-                    }
-                }
-                }
                 bat 'npm install' 
             }
         }
@@ -27,10 +15,11 @@ pipeline {
         stage('SonarQube Analysis') {
             steps{
                 script{
-            withSonarQubeEnv() {
-              bat 'SonarService.bat'
-            }
-            }
+             // Use the correct installation name for SonarScanner
+                def scannerHome = tool 'Sonarqube_exec';
+                withSonarQubeEnv('SonarQube') {
+                    bat "%scannerHome%\\bin\\sonar-scanner.bat"
+                }
             }
         }
         
