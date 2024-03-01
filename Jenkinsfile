@@ -10,7 +10,7 @@ pipeline {
             steps{
             def scannerHome = tool 'sonarscanner';
             withSonarQubeEnv() {
-              bat '%scannerHome%\bin\sonar-scanner.bat'
+              bat '%scannerHome%\\bin\\windows-x86-64\\SonarService.bat'
             }
             }
           }
