@@ -7,9 +7,11 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
+            steps{
             def scannerHome = tool 'sonarscanner';
             withSonarQubeEnv() {
-              sh "${scannerHome}/bin/sonar-scanner"
+              bat '%scannerHome%\bin\sonar-scanner.bat'
+            }
             }
           }
         stage('Test') {
