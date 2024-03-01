@@ -19,7 +19,7 @@ pipeline {
                 def scannerHome = tool 'Sonarqube_exec';
                 withSonarQubeEnv() {
                     // bat "net start ${scannerHome}/bin/windows-x86-64/SonarService.bat"
-                    bat "cd /d ${scannerHome}/sonarqube/bin/windows-x86-64"  
+                    bat "cd /d ${scannerHome}/bin/windows-x86-64"  
                     bat "net start SonarQube"  REM Start the SonarQube service
                     // bat "net start sonarqube"
                 }
