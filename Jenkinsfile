@@ -1,8 +1,23 @@
+import jenkins.model.*
+import hudson.tools.*
+
+
+
 pipeline {
     agent any
     stages {
         stage('Build') { 
             steps {
+                def jenkinsInstance = Jenkins.getInstance()
+                def toolDescriptor = Jenkins.getInstance().getDescriptorList(ToolDescriptor.class)
+                
+                toolDescriptor.each { descriptor ->
+                    println("Tool Type: ${descriptor.displayName}")
+                    descriptor.getInstallations().each { installation ->
+                        println("- Name: ${installation.name}")
+                        println("  Home: ${installation.home}")
+                    }
+                }
                 bat 'npm install' 
             }
         }
@@ -10,7 +25,6 @@ pipeline {
         stage('SonarQube Analysis') {
             steps{
                 script{
-            def scannerHome = tool 'Sonarqube_exec';
             withSonarQubeEnv() {
               bat '%scannerHome%\\bin\\windows-x86-64\\SonarService.bat'
             }
