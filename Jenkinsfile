@@ -6,6 +6,12 @@ pipeline {
                 bat 'npm install' 
             }
         }
+        stage('SonarQube Analysis') {
+            def scannerHome = tool 'sonarscanner';
+            withSonarQubeEnv() {
+              sh "${scannerHome}/bin/sonar-scanner"
+            }
+          }
         stage('Test') {
             steps {
                 bat '.\\jenkins\\scripts\\test.bat'
@@ -18,12 +24,7 @@ pipeline {
                 bat '.\\jenkins\\scripts\\kill.bat'
             }
         }
-         stage('SonarQube Analysis') {
-            def scannerHome = tool 'sonarscanner';
-            withSonarQubeEnv() {
-              sh "${scannerHome}/bin/sonar-scanner"
-            }
-          }
+         
     }
     
 }
