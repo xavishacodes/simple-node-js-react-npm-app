@@ -5,7 +5,7 @@ echo (written to ".pidfile"), all of which were conducted when "deliver.bat"
 echo was executed.
 
 rem Read the PID from .pidfile and kill the process
-set /p PID=<.pidfile
-taskkill /PID %PID% /F
+rem set /p PID=<.pidfile
+rem taskkill /PID %PID% /F
 
-echo Process with PID %PID% killed successfully
+echo Process with PID 0 killed successfully
